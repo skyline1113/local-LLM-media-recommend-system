@@ -30,53 +30,51 @@ engine.setInitProgressCallback(updateEngineInitProgressCallback);
 export default function Home() {
   const [modelInited, setModelInited] = useState(false);
   const [allowDownload, setAllowDownload] = useState(false);
-  // const [engine, setEngine] = useState(null);
-  // const [selectedModel, setSelectedModel] = useState("TinyLlama-1.1B-Chat-v0.4-q4f32_1-MLC-1k");
+  const [loaded,setLoaded] = useState(false);
 
   useEffect(() => {
-    if (allowDownload) {
-      console.log("Engine: ", engine, modelInited);
-      engine.reload(selectedModel, config);
-    }
+    const loadModel = async () => {
+      try {
+        console.log("Engine: ", engine);
+        await engine.reload(selectedModel, config); // 等待模型下载完成
+        setLoaded(true); // 下载完成再切换状态
+      } catch (err) {
+        console.error("模型下载出错:", err);
+      }
+    };
+  if (allowDownload) {
+    loadModel();
+  }
   }, [allowDownload]);
 
 
   // 上面为新增
 
-  const handleSelect = (selected) => setSelectedModel(selected);
 
   const handleDownload = () => setAllowDownload(true);
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex gap-[32px] justify-center row-start-2 items-center sm:items-start">
-        {/* <div className="max-h-[500px] max-w-[500px] grid grid-rows-[auto_1fr] gap-4">
-          <div className="flex gap-2 items-center">
-            <div>
-              <span className="font-bold text-xl">SELECT: </span>
-              <span className="text-xl underline">{selectedModel}</span>
-            </div>
-
-          </div>
-          <div className="w-full overflow-y-scroll">
-            {availableModels.map((item, index) => (
-              <div key={index} className="cursor-pointer" onClick={() => handleSelect(item)}>
-                {item}
-              </div>
-            ))}
-          </div>
-        </div> */}
-        <div>
-          <button
-          className="bg-gray-400 select-none cursor-pointer hover:bg-gray-600 px-4 py-2 rounded-md"
-          onClick={handleDownload}>
-            Download
-          </button>
-          <p id="download-status"></p>
-        </div>
-          <ChatBox engine={engine} />
-
-      </main>
+<div className="grid grid-rows-[20px_1fr_20px] min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+  
+  {!loaded && (
+    <div className="flex flex-col justify-center items-center h-[80vh]">
+      <p className="text-[40px] font-shSans text-center">欢迎使用本影视推荐系统<br />
+        点击此按钮开始</p>
+      <button
+        className="bg-gray-400 select-none cursor-pointer hover:bg-gray-600 px-4 py-2 rounded-md"
+        onClick={handleDownload}
+      >
+        开始
+      </button>
+      <p id="download-status" className="ml-4"></p>
     </div>
+  )}
+
+  {loaded && (
+    <div className="flex justify-center items-center h-[80vh]">
+      <ChatBox engine={engine} />
+    </div>
+  )}
+</div>
   );
 }
