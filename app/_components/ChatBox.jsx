@@ -37,7 +37,14 @@ export default function ChatBox() {
       </div>
       <div className="max-h-[200px] flex gap-2  ">
         <div className="border-2 border-gray-400 rounded-md flex-1">
-          <input className="w-full h-full p-2" onChange={handleChange} value={text} />
+          <input 
+            className="w-full h-full p-2"
+            onChange={handleChange} 
+            value={text}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleSend(); // 按 Enter 時執行
+            }}
+             />
         </div>
         <button
           className="bg-gray-400 select-none cursor-pointer hover:bg-gray-600 px-4 py-2 rounded-md"

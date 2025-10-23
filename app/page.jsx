@@ -3,6 +3,8 @@
 import { use, useEffect, useState } from "react";
 import { engine, availableModels, streamingGenerating } from "@/utils/webllmHandler";
 import ChatBox from "./_components/ChatBox";
+import ImagesList from "./_components/ImagesList";
+
 const messages = [
   {
     content: "You are a helpful AI agent helping users.",
@@ -37,7 +39,7 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex gap-[32px] justify-center row-start-2 items-center sm:items-start">
-        <div className="max-h-[500px] max-w-[500px] grid grid-rows-[auto_1fr] gap-4">
+        {/* <div className="max-h-[500px] max-w-[500px] grid grid-rows-[auto_1fr] gap-4">
           <div className="flex gap-2 items-center">
             <div>
               <span className="font-bold text-xl">SELECT: </span>
@@ -56,7 +58,8 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
+        <ImagesList/>
         <ChatBox />
       </main>
     </div>
