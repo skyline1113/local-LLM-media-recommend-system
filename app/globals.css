@@ -6,6 +6,40 @@
   --font-geist-sans: "SimHei","Microsoft YaHei","Heiti SC",sans-serif;
 }
 
+#msgList::-webkit-scrollbar {
+  display: none;
+}
+
+/* .visible-scrollbar,
+.invisible-scrollbar,
+.mostly-customized-scrollbar {
+  display: block;
+  width: 10em;
+  overflow: auto;
+  height: 2em;
+  padding: 1em;
+  margin: 1em auto;
+  outline: 2px dashed cornflowerblue;
+}
+
+.invisible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Demonstrate a "mostly customized" scrollbar
+ * (won't be visible otherwise if width/height is specified) 
+.mostly-customized-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #aaaaaa; /* or add it to the track 
+}
+
+/* Add a thumb 
+.mostly-customized-scrollbar::-webkit-scrollbar-thumb {
+  background: black;
+} 
+*/
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -15,8 +49,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1a1a1a;
+    --foreground: #e7e7e7;
   }
 }
 
@@ -27,6 +61,12 @@
 
 @theme {
   --font-shSans: 'SHSans';
+  --color-bg-100: #e7e7e7;
+  --color-bg-300: #7a7a7a;
+  --color-bg-500: #303030;
+  --color-bg-700: #1a1a1a;
+  --color-theme-300: #ff806d;
+  --color-theme-500: #f46049;
 }
 
 body {
