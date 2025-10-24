@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #1a1a1a;
+    --foreground: #e7e7e7;
   --font-geist-sans: "SimHei","Microsoft YaHei","Heiti SC",sans-serif;
 }
 
@@ -47,12 +47,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #1a1a1a;
     --foreground: #e7e7e7;
   }
-}
+} */
 
 @font-face {
   font-family: "SHSans";
